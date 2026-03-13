@@ -1,0 +1,50 @@
+.product-grid-section {
+  padding: 48px 16px;
+}
+
+@media (min-width: 960px) {
+  .product-grid-section {
+    padding: 64px 32px;
+  }
+}
+
+.product-grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 24px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 32px;
+  }
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  /* Override default gap to match Adidas tighter grid sometimes */
+  row-gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+}

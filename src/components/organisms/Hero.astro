@@ -1,0 +1,36 @@
+---
+
+import './Hero.css';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  primaryCtaText: string;
+  secondaryCtaText?: string;
+  bgColor?: string;
+}
+
+const { title, subtitle, primaryCtaText, secondaryCtaText, bgColor = '#000000' } = Astro.props;
+---
+
+<section class="hero-section" style={`background-color: ${bgColor};`}>
+  <div class="container hero-container">
+    <div class="hero-content">
+      <h1 class="hero-title">{title}</h1>
+      {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+      
+      <div class="hero-actions">
+        <a href="#" class="btn btn-secondary btn-medium uppercase-bold">
+          <span class="btn-text">{primaryCtaText}</span>
+          <span class="btn-icon right">→</span>
+        </a>
+        {secondaryCtaText && (
+          <a href="#" class="btn btn-secondary btn-medium uppercase-bold">
+            <span class="btn-text">{secondaryCtaText}</span>
+            <span class="btn-icon right">→</span>
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

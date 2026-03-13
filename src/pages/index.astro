@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/organisms/Header.astro';
+import Footer from '../components/organisms/Footer.astro';
+import Hero from '../components/organisms/Hero.astro';
+import ProductGrid from '../components/organisms/ProductGrid.astro';
+import CategoryGrid from '../components/organisms/CategoryGrid.astro';
+
+// Mock Data
+const trendyProducts = [
+  { id: '1', title: 'Zapatillas Samba OG', category: 'Originals', price: 'S/ 499.00', bgColor: '#e5e5e5', isNew: true },
+  { id: '2', title: 'Zapatillas Gazelle', category: 'Originals', price: 'S/ 449.00', bgColor: '#000000' },
+  { id: '3', title: 'Zapatillas Campus 00s', category: 'Originals', price: 'S/ 479.00', bgColor: '#171717' },
+  { id: '4', title: 'Pantalón Adicolor Classics SST', category: 'Hombre Originals', price: 'S/ 279.00', bgColor: '#e5e5e5', isNew: true },
+];
+
+const newArrivals = [
+  { id: '5', title: 'Polo Essentials 3 Tiras', category: 'Hombre Sportswear', price: 'S/ 129.00', originalPrice: 'S/ 149.00', bgColor: '#171717' },
+  { id: '6', title: 'Zapatillas Ultraboost Light', category: 'Running', price: 'S/ 799.00', bgColor: '#e5e5e5' },
+  { id: '7', title: 'Casaca Tiro 23 League', category: 'Fútbol', price: 'S/ 249.00', bgColor: '#171717' },
+  { id: '8', title: 'Mochila Classic Badge of Sport', category: 'Entrenamiento', price: 'S/ 149.00', bgColor: '#000000', isNew: true },
+];
+
+const popularCategories = [
+  { title: 'ZAPATILLAS', bgColor: '#262626' },
+  { title: 'ROPA', bgColor: '#171717' },
+  { title: 'ACCESORIOS', bgColor: '#000000' },
+  { title: 'OFERTAS', bgColor: '#e5e5e5' }, // Using lighter color for contrast
+];
+---
+
+<Layout title="Adidas Clone - Tienda Oficial">
+  <Header />
+  
+  <main>
+    <Hero 
+      title="BIENVENIDOS AL CLUB" 
+      subtitle="Explora nuestra nueva colección de temporada. Estilo y rendimiento en un solo lugar."
+      primaryCtaText="COMPRAR AHORA"
+      secondaryCtaText="VER NOVEDADES"
+      bgColor="#000000"
+    />
+    
+    <CategoryGrid 
+      title="¿Para quién compras?"
+      categories={[
+        { title: 'HOMBRE', bgColor: '#000000' },
+        { title: 'MUJER', bgColor: '#171717' },
+        { title: 'NIÑOS', bgColor: '#262626' }
+      ]}
+    />
+    
+    <ProductGrid 
+      title="TENDENCIAS" 
+      products={trendyProducts} 
+    />
+    
+    <Hero 
+      title="RUNNING REVOLUTION" 
+      subtitle="Las nuevas Ultraboost ya están aquí con más retorno de energía que nunca."
+      primaryCtaText="DESCUBRIR"
+      bgColor="#171717"
+    />
+    
+    <CategoryGrid 
+      title="COMPRAR POR CATEGORÍA"
+      categories={popularCategories}
+    />
+    
+    <ProductGrid 
+      title="NUEVAS LLEGADAS" 
+      products={newArrivals} 
+    />
+  </main>
+
+  <Footer />
+</Layout>

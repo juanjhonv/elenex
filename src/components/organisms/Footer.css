@@ -1,0 +1,134 @@
+.app-footer {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  margin-top: 64px;
+}
+
+.newsletter-section {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  padding: 48px 16px;
+  text-align: center;
+}
+
+.newsletter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+@media (min-width: 960px) {
+  .newsletter-container {
+    flex-direction: row;
+    justify-content: center;
+    gap: 48px;
+  }
+}
+
+.newsletter-title {
+  font-size: 24px;
+  margin: 0;
+  max-width: 600px;
+}
+
+@media (min-width: 960px) {
+  .newsletter-title {
+    font-size: 32px;
+    text-align: left;
+  }
+}
+
+.newsletter-btn {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.newsletter-btn:hover {
+  background-color: var(--color-gray-300);
+}
+
+.footer-links-section {
+  padding: 48px 16px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 576px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.footer-column h3 {
+  font-family: var(--font-family-base);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.footer-column ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-column a {
+  font-size: 14px;
+  color: var(--color-gray-700);
+  transition: color 0.2s;
+}
+
+.footer-column a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  background-color: var(--color-gray-800);
+  color: var(--color-gray-400);
+  padding: 24px 16px;
+}
+
+.footer-bottom-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  font-size: 12px;
+}
+
+@media (min-width: 960px) {
+  .footer-bottom-container {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.footer-legal a {
+  transition: color 0.2s;
+}
+
+.footer-legal a:hover {
+  color: var(--color-secondary);
+}

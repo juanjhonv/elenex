@@ -1,0 +1,44 @@
+---
+import { ProductCard } from '../molecules/ProductCard';
+import './ProductGrid.css';
+
+interface Product {
+  id: string;
+  title: string;
+  category: string;
+  price: string;
+  originalPrice?: string;
+  bgColor?: string;
+  isNew?: boolean;
+}
+
+interface Props {
+  title: string;
+  products: Product[];
+}
+
+const { title, products } = Astro.props;
+---
+
+<section class="product-grid-section container">
+  <div class="product-grid-header">
+    <h2 class="section-title">{title}</h2>
+  </div>
+  
+  <div class="product-grid">
+    {products.map(product => (
+      <div class="grid-item">
+        <ProductCard 
+          client:load
+          id={product.id}
+          title={product.title}
+          category={product.category}
+          price={product.price}
+          originalPrice={product.originalPrice}
+          bgColor={product.bgColor}
+          isNew={product.isNew}
+        />
+      </div>
+    ))}
+  </div>
+</section>

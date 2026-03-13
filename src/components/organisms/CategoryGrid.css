@@ -1,0 +1,33 @@
+.category-grid-section {
+  padding: 48px 16px;
+}
+
+@media (min-width: 960px) {
+  .category-grid-section {
+    padding: 64px 32px;
+  }
+}
+
+.category-grid-section .section-title {
+  margin-bottom: 24px;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .category-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .category-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+  }
+}

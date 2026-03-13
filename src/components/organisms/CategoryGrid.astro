@@ -1,0 +1,29 @@
+---
+import { CategoryCard } from '../molecules/CategoryCard';
+import './CategoryGrid.css';
+
+interface Category {
+  title: string;
+  bgColor: string;
+}
+
+interface Props {
+  title?: string;
+  categories: Category[];
+}
+
+const { title, categories } = Astro.props;
+---
+
+<section class="category-grid-section container">
+  {title && <h2 class="section-title">{title}</h2>}
+  
+  <div class="category-grid">
+    {categories.map(category => (
+      <CategoryCard 
+        title={category.title}
+        bgColor={category.bgColor}
+      />
+    ))}
+  </div>
+</section>

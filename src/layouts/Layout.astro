@@ -1,0 +1,37 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Adidas Clone - Una tienda en línea deportiva" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+
+        <!-- Using a rough approximation of Adidas fonts since AdihausDIN is proprietary. Using Inter and Roboto font as fallback -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+        
+        <style is:global>
+            /* Override with open source fonts */
+            :root {
+                --font-family-base: 'Inter', Helvetica, Arial, sans-serif;
+                --font-family-header: 'Oswald', Helvetica, Arial, sans-serif;
+            }
+        </style>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
