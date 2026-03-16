@@ -1,0 +1,54 @@
+---
+import Footer from "../components/organisms/Footer.astro";
+import Header from "../components/organisms/Header.astro";
+import Hero from "../components/organisms/Hero.astro";
+import ProductList from "../components/organisms/ProductList.astro";
+import Layout from "../layouts/Layout.astro";
+// import { sdk } from "@/lib/sdk"
+// import { sdk } from "../lib/sdk";
+
+// const { products } = await sdk.store.product.list();
+// console.log(products);
+// const traerdatos = async () => {
+//   sdk.store.product.list().then(({ products }) => {
+//     console.log(products);
+//   });
+// };
+// traerdatos();
+
+// import Medusa from "@medusajs/js-sdk";
+
+// let MEDUSA_BACKEND_URL = "http://localhost:9000";
+
+// if (import.meta.env.PUBLIC_MEDUSA_BACKEND_URL) {
+//   MEDUSA_BACKEND_URL = import.meta.env.PUBLIC_MEDUSA_BACKEND_URL;
+// }
+
+// try {
+//   const sdk = new Medusa({
+//     baseUrl: MEDUSA_BACKEND_URL,
+//     debug: import.meta.env.NODE_ENV === "development",
+//     publishableKey: import.meta.env.PUBLIC_MEDUSA_PUBLISHABLE_KEY,
+//   });
+// } catch (error) {
+//   console.log("Mostrando el siguiente error:", error);
+// }
+---
+
+<Layout title="Adidas Clone - Tienda Oficial">
+  <Header />
+
+  <main>
+    <Hero
+      title="BIENVENIDOS AL CLUB"
+      subtitle="Explora nuestra nueva colección de temporada. Estilo y rendimiento en un solo lugar."
+      primaryCtaText="COMPRAR AHORA"
+      secondaryCtaText="VER NOVEDADES"
+      bgColor="#000000"
+    />
+    <ProductList />
+    <!-- <ProductsList /> -->
+  </main>
+
+  <Footer />
+</Layout>

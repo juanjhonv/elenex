@@ -1,16 +1,14 @@
 ---
-import { Logo } from '../atoms/Logo';
-import { Icon } from '../atoms/Icon';
-import { SearchBox } from '../molecules/SearchBox';
-import './Header.css';
+import { Logo } from "../atoms/Logo";
+import { Icon } from "../atoms/Icon";
+import { SearchBox } from "../molecules/SearchBox";
+import "./Header.css";
 ---
 
 <header class="app-header">
   <div class="top-bar">
     <div class="container top-bar-content">
-      <div class="top-bar-notice">
-        REBAJAS HASTA EL 50%
-      </div>
+      <div class="top-bar-notice">REBAJAS HASTA EL 50%</div>
       <div class="top-bar-links">
         <a href="#">Ayuda</a>
         <a href="#">Seguimiento de pedidos</a>
@@ -18,7 +16,7 @@ import './Header.css';
       </div>
     </div>
   </div>
-  
+
   <div class="main-nav-wrapper">
     <div class="container main-nav">
       <div class="nav-left">
@@ -29,22 +27,28 @@ import './Header.css';
           <Logo client:load />
         </div>
       </div>
-      
+
       <nav class="nav-links desktop-only">
         <a href="#" class="nav-link">HOMBRE</a>
         <a href="#" class="nav-link">MUJER</a>
         <a href="#" class="nav-link">NIÑOS</a>
         <a href="#" class="nav-link" style="color: red;">OFERTAS</a>
       </nav>
-      
+
       <div class="nav-right">
         <div class="desktop-only search-wrapper">
           <SearchBox placeholder="Buscar remeras, zapatillas..." client:load />
         </div>
         <div class="icon-links">
-          <a href="#" class="icon-link"><Icon name="user" size={20} client:load /></a>
-          <a href="#" class="icon-link"><Icon name="heart" size={20} client:load /></a>
-          <a href="#" class="icon-link"><Icon name="cart" size={20} client:load /></a>
+          <a href="#" class="icon-link"
+            ><Icon name="user" size={20} client:load /></a
+          >
+          <a href="#" class="icon-link"
+            ><Icon name="heart" size={20} client:load /></a
+          >
+          <a href="/store" class="icon-link"
+            ><Icon name="cart" size={20} client:load /></a
+          >
         </div>
       </div>
     </div>

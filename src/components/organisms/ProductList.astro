@@ -1,0 +1,66 @@
+---
+// const response = await fetch("https://fake.jsonmockapi.com/users?length=10");
+// const data = await response.json();
+// console.log("La info del user es:", data);
+
+// import { sdk } from "../../lib/sdk";
+
+// const { products } = await sdk.store.product.list();
+// sdk.store.product.list().then(({ products }) => {
+//   console.log(products);
+// });
+
+// import Medusa from "@medusajs/js-sdk";
+
+// let MEDUSA_BACKEND_URL = "http://localhost:9000";
+
+// if (import.meta.env.PUBLIC_MEDUSA_BACKEND_URL) {
+//   MEDUSA_BACKEND_URL = import.meta.env.PUBLIC_MEDUSA_BACKEND_URL;
+// }
+
+// const DEBUG = import.meta.env.NODE_ENV === "development";
+// const PUBLISHABLEKEY = import.meta.env.PUBLIC_MEDUSA_PUBLISHABLE_KEY;
+
+// console.log(
+//   "La variables de entorno son la siguientes:",
+//   MEDUSA_BACKEND_URL,
+//   DEBUG,
+//   PUBLISHABLEKEY,
+// );
+// const sdk = new Medusa({
+//   baseUrl: MEDUSA_BACKEND_URL,
+//   debug: DEBUG,
+//   publishableKey: PUBLISHABLEKEY,
+// });
+
+import Product from "./Product.tsx";
+import { listProducts } from "../../lib/data/products";
+import type { StoreProduct } from "@medusajs/types";
+let product: Awaited<ReturnType<typeof listProducts>> | undefined;
+let error: Error | undefined;
+// try {
+//   product = await listProducts();
+//   console.log("La lista de productos es la siguiente:", product);
+// } catch (e) {
+//   error = e instanceof Error ? e : new Error("Unknown error");
+//   console.error(error);
+// }
+
+interface Otro {
+  data: StoreProduct;
+}
+---
+
+<div>
+  <h1>Lista De Productos</h1>
+  <!-- {product?.forEach((row) => <h2>{row.title}</h2>)} -->
+  <!-- <h2>{randomUser.name.first} {randomUser.name.last}</h2> -->
+  <!-- {product && <Product list={product} />} -->
+  <main>
+    <aside></aside>
+    <section>
+      <div></div>
+      <div></div>
+    </section>
+  </main>
+</div>
