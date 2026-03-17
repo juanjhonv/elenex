@@ -1,4 +1,6 @@
 /* Adidas brand colors and fonts */
+@import "tailwindcss";
+
 :root {
   --color-primary: #000000;
   --color-secondary: #ffffff;
@@ -11,10 +13,10 @@
   --color-gray-700: #404040;
   --color-gray-800: #262626;
   --color-gray-900: #171717;
-  
+
   --font-family-base: 'AdihausDIN', Helvetica, Arial, sans-serif;
   --font-family-header: 'Pragmatica', Helvetica, Arial, sans-serif;
-  
+
   --header-height: 80px;
   --topbar-height: 40px;
 }
@@ -43,7 +45,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-family-header);
   font-weight: bold;
   text-transform: uppercase;
@@ -67,7 +74,8 @@ button {
   font-family: inherit;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
