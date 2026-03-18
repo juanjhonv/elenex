@@ -1,0 +1,22 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/organisms/Header.astro";
+import Footer from "../../components/organisms/Footer.astro";
+import Product from "../../components/organisms/Product";
+
+export const prerender = false;
+
+const { id } = Astro.params;
+
+if (!id) {
+  return Astro.redirect("/store");
+}
+---
+
+<Layout title="Detalle de Producto">
+  <Header />
+  <main>
+    <Product client:only="react" productId={id} />
+  </main>
+  <Footer />
+</Layout>

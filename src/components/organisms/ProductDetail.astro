@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../organisms/Header.astro";
+import Footer from "../organisms/Footer.astro";
+import Product from "./Product";
+
+interface Props {
+  productId: string;
+}
+
+const { productId } = Astro.props;
+---
+
+<Layout title="Detalle de Producto">
+  <Header />
+  <main>
+    <Product client:load productId={productId} />
+  </main>
+  <Footer />
+</Layout>

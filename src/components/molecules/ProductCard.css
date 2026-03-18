@@ -5,6 +5,9 @@
   cursor: pointer;
   transition: all 0.3s ease;
   height: 100%;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .product-card:hover {
@@ -97,11 +100,12 @@
 
 .product-title {
   font-family: var(--font-family-base);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   text-transform: none;
   margin: 0 0 4px 0;
   line-height: 1.4;
+  font-weight: bold;
 }
 
 .product-category {
