@@ -1,46 +1,39 @@
-import type { StoreProductCategory, StoreProductListParams } from "@medusajs/types"
-import { useRef, type ChangeEventHandler } from "react";
+import type { StoreProductCategory, StoreProductListParams, StoreProductTag } from "@medusajs/types"
+import { useRef, type ChangeEventHandler, type ReactElement } from "react";
+import type { GroupInputCheckCallbackProps } from "../molecules/types";
 
 type ParamsInputCheck = {
-  info: StoreProductCategory;
+  info: StoreProductCategory | StoreProductTag;
   filters: StoreProductListParams | undefined;
-  setFilters: (value: {}) => void;
+  callback: ({ }: GroupInputCheckCallbackProps) => void;
 }
 
-const InputCheck: React.FC<ParamsInputCheck> = ({ info, filters, setFilters }) => {
-  // const { info } = params
-  let category_id: Array<string> = []
-  const data = useRef(info)
-  const onchange: ChangeEventHandler = (e) => {
-    const id_categ_input = e.target.id
-    if (typeof filters?.category_id === 'string') {
+function isStoreProductCategory(param: any): param is StoreProductCategory {
+  return param && typeof param.name === 'string' && 'handle' in param;
+}
 
-    } else {
-      if (filters?.category_id) {
-        category_id = (filters?.category_id ?? []).find(idcat => idcat == id_categ_input)
-          ? filters.category_id.filter(idcat => idcat !== id_categ_input)
-          : [...filters.category_id, id_categ_input]
-      }
+const InputCheck: React.FC<ParamsInputCheck> = ({ info, filters, callback }): ReactElement => {
+  // let name: string
+  // if(isStoreProductCategory(info)){
+  //   name = info.name
+  // }
+  // const onchange: ChangeEventHandler 
+  if (isStoreProductCategory(info)) {
+    const onchange: ChangeEventHandler = (e) => {
+      console.log("LLamando al callback")
+      callback({ fieldname: info.name, idfield: info.id })
     }
-
-    // if(filters?.category_id && filters?.category_id.length > 1){
-    //   filters.category_id.find()
-    // } else {
-
-    // }
-    setFilters({
-      ...filters,
-      category_id: category_id
-    })
-    console.log("Aplicando uno d elos filtros", e.target.id)
-    console.log("Los comandos principales son los siguientes")
+    return (
+      <>
+        <input type="checkbox" id={`rubro_${info.id}`} onChange={onchange} />
+        <label htmlFor={`rubro_${info.id}`}>{info.name}</label>
+      </>
+    )
+  } else {
+    return (
+      <></>
+    )
   }
-  return (
-    <>
-      <input type="checkbox" id={`rubro_${info.id}`} onChange={onchange} />
-      <label htmlFor={`rubro_${info.id}`}>{info.name}</label>
-    </>
-  )
 }
 
 export default InputCheck

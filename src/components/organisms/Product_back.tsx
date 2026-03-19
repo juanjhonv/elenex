@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useQuery, useMutation, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { sdk } from "../../lib/sdk";
-import ProductGallery from "../molecules/Thumbnail";
 
 interface ProductProps {
   productId: string;
@@ -102,14 +101,24 @@ const ProductContent: React.FC<ProductProps> = ({ productId }) => {
   const basePrice = firstVariant?.prices?.[0]?.amount;
 
   return (
-    <section className="py-16 px-4 border border-red">
-      <div className="max-w-8xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+    <section className="py-16 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Product Image */}
-          <ProductGallery images={['https://picsum.photos/800', 'https://picsum.photos/200', 'https://picsum.photos/200']} />
+          <div className="flex items-center justify-center bg-gray-100 rounded-lg h-96">
+            {product.thumbnail ? (
+              <img
+                src={product.thumbnail}
+                alt={product.title}
+                className="w-full h-full object-cover rounded-lg"
+              />
+            ) : (
+              <div className="text-gray-400 text-lg">Sin imagen</div>
+            )}
+          </div>
 
           {/* Product Details */}
-          <div className="flex flex-col justify-start">
+          <div className="flex flex-col justify-center">
             <h1 className="text-4xl font-bold mb-4">{product.title}</h1>
 
             {/* Price */}
@@ -125,16 +134,6 @@ const ProductContent: React.FC<ProductProps> = ({ productId }) => {
                 {product.description}
               </p>
             )}
-
-            <div className="grid grid-col-6 [&_div]:w-15 [&_div]:h-15 [&_div]:bg-orange-400 gap-2 w-1/3">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
 
             {/* Variants Selection */}
             {product.variants && product.variants.length > 0 && (
@@ -223,7 +222,6 @@ const ProductContent: React.FC<ProductProps> = ({ productId }) => {
               </p>
             )}
           </div>
-
         </div>
       </div>
     </section>

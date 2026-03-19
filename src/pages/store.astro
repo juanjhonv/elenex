@@ -13,18 +13,27 @@ import { sdk } from "../lib/sdk";
 //   error = e instanceof Error ? e : new Error("Unknown error");
 //   console.error(error);
 // }
+
+let filters_list = [];
 const { product_categories } = await sdk.store.category.list();
 console.log("La lista de productos es: ", product_categories);
 
-try {
-  // const { products } = await sdk.store.product.list();
-  // const { product_categories } = await sdk.store.category.list();
-  // console.log("La lista de productos es: ", product_categories);
-  // return products;
-} catch (error) {
-  console.error(error);
-  throw new Error("Failed to fetch products");
-}
+filters_list = [
+  {
+    filterfield: "category_id",
+    filtervalues: product_categories,
+  },
+];
+
+// try {
+//   const { products } = await sdk.store.product.list();
+//   const { product_categories } = await sdk.store.category.list();
+//   console.log("La lista de productos es: ", product_categories);
+//   return products;
+// } catch (error) {
+//   console.error(error);
+//   throw new Error("Failed to fetch products");
+// }
 ---
 
 <Layout title="Tienda - Productos">
@@ -40,7 +49,7 @@ try {
     />
     <ProductListComponent
       client:only="react"
-      initialDataFilters={product_categories}
+      initialDataFilters={filters_list}
     />
   </main>
 

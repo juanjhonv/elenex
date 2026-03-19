@@ -1,16 +1,11 @@
-import React, { useState, useMemo } from "react";
-import { useQuery, QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React, { useState, useMemo, useEffect } from "react";
+import { useQuery, QueryClient, QueryClientProvider, type UseQueryOptions, type UseQueryResult } from "@tanstack/react-query";
 import { sdk } from "../../lib/sdk";
 import { ProductCard } from "../molecules/ProductCard";
-import { SearchBox } from "../molecules/SearchBox";
-import type { ProductCategoryDTO, ProductDTO, StoreProduct, StoreProductCategory, StoreProductParams } from "@medusajs/types";
+import type { StoreProduct } from "@medusajs/types";
 import ProductFilters from "./ProductFilters";
-import type { BaseProductListParams } from "@medusajs/types/dist/http/product/common";
+import type { ProductListContentProps } from "../molecules/types";
 
-type InitialParams = {
-  client?: string,
-  initialDataFilters: StoreProductCategory[]
-}
 interface Product {
   id: string;
   title: string;
@@ -26,12 +21,20 @@ interface Product {
   handle?: string;
 }
 
-const ProductListContent: React.FC<InitialParams> = ({ initialDataFilters }: InitialParams) => {
+const ProductListContent: React.FC<ProductListContentProps> = ({ initialDataFilters }: ProductListContentProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({});
 
   // Fetch products using React Query
+
+  // let products = [] ,isLoading = false, error = false;
+
+  // let ppp = { data: products = [], isLoading, error } = otro
+  // let products:[]
+  // let result = undefined
   const { data: products = [], isLoading, error } = useQuery({
+    // result = useQuery({
+    // UseQueryResult = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const { products } = await sdk.store.product.list(filters);
@@ -41,18 +44,37 @@ const ProductListContent: React.FC<InitialParams> = ({ initialDataFilters }: Ini
     staleTime: 1000 * 60 * 5, // 5 minutes
   });
 
+
+  useEffect(() => {
+    // { data: products = [], isLoading, error } = useQuery                                  
+
+    // console.log("Se modifican los filtros de la consulta", filters)
+    // useQueryProps = useQuery({
+    //   queryKey: ["products"],
+    //   queryFn: async () => {
+    //     const { products } = await sdk.store.product.list(filters);
+    //     console.log("La lista de productos es:", products)
+    //     return products;
+    //   },
+    //   staleTime: 1000 * 60 * 5,
+    // });
+  }, [filters])
+
   // Filter products based on search query
   const filteredProducts = useMemo(() => {
+    // if (!searchQuery.trim()) return result.data;
     if (!searchQuery.trim()) return products;
 
     const query = searchQuery.toLowerCase();
-    return products.filter(
+    return (products ?? []).filter(
       (product: StoreProduct) =>
         product.title.toLowerCase().includes(query) ||
         product.description?.toLowerCase().includes(query)
     );
   }, [products, searchQuery]);
+  // }, [result.data, searchQuery]);
 
+  // if (result.isLoading) {
   if (isLoading) {
     return (
       <section className="py-16 px-4 bg-gray-50">
@@ -65,6 +87,7 @@ const ProductListContent: React.FC<InitialParams> = ({ initialDataFilters }: Ini
     );
   }
 
+  // if (result.error) {
   if (error) {
     return (
       <section className="py-16 px-4 bg-gray-50">
@@ -135,7 +158,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const ProductList: React.FC<InitialParams> = ({ initialDataFilters }) => (
+const ProductList: React.FC<ProductListContentProps> = ({ initialDataFilters }) => (
   <QueryClientProvider client={queryClient}>
     <ProductListContent initialDataFilters={initialDataFilters} />
   </QueryClientProvider>

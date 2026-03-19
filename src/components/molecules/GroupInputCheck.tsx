@@ -1,15 +1,32 @@
-import { useState, type Dispatch, type SetStateAction } from "react";
+import React, { useState } from "react";
 import InputCheck from "../atoms/InputCheck";
-import type { StoreProductCategory, StoreProductListParams } from "@medusajs/types";
+import type { GroupInputCheckCallbackProps, GroupInputCheckParams } from "./types";
 
-type GroupInputCheckParams = {
-  info: StoreProductCategory[];
-  filters: StoreProductListParams | undefined;
-  setFilters: (value: object) => void;
-}
 export default function GroupInputCheck({ info, filters, setFilters }: GroupInputCheckParams) {
-  const [active, setActive] = useState(true)
-  if (info.length) {
+  const [active, setActive] = useState(true);
+
+  const callback = ({ fieldname, idfield }: GroupInputCheckCallbackProps) => {
+    let filtername = info.filterfield;
+    let categoryIDs: string[] | [];
+
+    if (filters) {
+      if (typeof filters.category_id === 'string') {
+        setFilters({ ...filters, [filtername]: idfield });
+      } else if (Array.isArray(filters.category_id)) {
+        const currentIDs = filters.category_id as string[];
+        categoryIDs = currentIDs.includes(idfield)
+          ? currentIDs.filter(idcat => idcat !== idfield)
+          : [...currentIDs, idfield];
+        setFilters({ ...filters, [filtername]: categoryIDs });
+      } else {
+        setFilters({ ...filters, [filtername]: [idfield] });
+      }
+    } else {
+      setFilters({})
+    }
+  };
+
+  if (info) {
     return (
       <div className="border">
         <div className="flex justify-between">
@@ -24,11 +41,13 @@ export default function GroupInputCheck({ info, filters, setFilters }: GroupInpu
         </div>
         <ul className={`${!active ? 'hidden' : ''}`}>
           {
-            info.map(data => <li><InputCheck info={data} filters={filters} setFilters={setFilters} /></li>)
+            info.filtervalues.map(data => <li><InputCheck info={data} filters={filters} callback={callback} /></li>)
           }
         </ul>
       </div>
     )
+  } else {
+    return (<></>)
   }
 }
 
